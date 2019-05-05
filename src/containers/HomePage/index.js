@@ -16,8 +16,13 @@ const styles = theme => ({
       height: '100vh',
       overflow: 'auto',
     },
+    gridItem: {
+    },
     smallLayout: {
-      width: '30%'
+     
+    },
+    gridContainer: {
+      padding: '16px',
     }
 });
 
@@ -26,9 +31,9 @@ export function HomePage({
     activeLayouts,
 }) {
     const layouts = activeLayouts.map ( layout => 
-    <Grid className={"/edit/" + layout.id} key={layout.id} item lg={4} md={6} sm={12} xs={12}>
+    <Grid  key={layout.id} item lg={4} md={6} sm={12} xs={12}  className={classes.gridItem}>
         <Link to={"/edit/" + layout.id}>
-            <Layout className="smallLayout"  layout={layout} isEditMode={false}></Layout>
+            <div className={classes.smallLayout}> <Layout   layout={layout} isEditMode={false}></Layout></div>
         </Link>
     </Grid>
     );
@@ -36,9 +41,9 @@ export function HomePage({
      
     <main className={classes.content}>
     <div className={classes.appBarSpacer} />
-        <Grid className="layouts-header" container spacing={24}>
+        <Grid  container spacing={0}  >
             <h1>Layouts:</h1>
-            <Grid container direction="row" spacing={24}>
+            <Grid container direction="row" spacing={32} className={classes.gridContainer} >
                 {layouts}
             </Grid>
         </Grid>
